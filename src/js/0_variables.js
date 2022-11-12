@@ -2,7 +2,7 @@
 
 console.log('hola');
 
-const listCharacteres = document.querySelector('.js-list-setion');
+const listCharacteres = document.querySelector('.js-section-list');
 const btnSearch = document.querySelector('.js-btn');
 const input = document.querySelector('.js-input');
 
@@ -23,6 +23,7 @@ function paintcharacteres(paint) {
   for (const item of paint) {
     const liElement = document.createElement('li');
     const articleElement = document.createElement('article');
+    liElement.setAttribute('class', 'article');
     const imgElem = document.createElement('img');
     imgElem.setAttribute('src', item.img);
     imgElem.setAttribute('class', 'img');

@@ -18,12 +18,18 @@
 }
 .main {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 50px;
   padding: 50px;
 }
 .fav__section {
-  width: 20vw;
+  width: 20%;
+  background-color: aqua;
+}
+.list__section {
+  background-color: burlywood;
+  width: 100vw;
+  display: inline;
 }
 .footer {
   text-align: center;
@@ -32,5 +38,17 @@
   width: 100px;
 }
 .list {
-  grid: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 200px;
+}
+.fav__title {
+  text-align: center;
+  font-size: 30px;
+  padding: 30px;
+}
+.article {
+  display: flex;
+  color: black;
+  gap: 10px;
 }

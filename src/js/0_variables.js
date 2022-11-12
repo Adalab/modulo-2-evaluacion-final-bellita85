@@ -9,21 +9,19 @@ const input = document.querySelector('.js-input');
 let characteres = [];
 let favouriteCharacteres = [];
 
-
 fetch('https://breakingbadapi.com/api/characters')
   .then((response) => response.json())
   .then((dataResult) => {
     characteres = dataResult;
     paintcharacteres(characteres);
-
   });
-
 
 function paintcharacteres(paint) {
   for (const item of paint) {
     const liElement = document.createElement('li');
     const articleElement = document.createElement('article');
     liElement.setAttribute('class', 'article');
+    liElement.setAttribute('class', 'js-li');
     const imgElem = document.createElement('img');
     imgElem.setAttribute('src', item.img);
     imgElem.setAttribute('class', 'img');
@@ -45,11 +43,12 @@ function paintcharacteres(paint) {
     // y a su vez meto h2 entero dentro de article . Y lo mismo con el parrafo
     // y por ultimo meto article dentro de li y el li dentro de mi const del ul traido del HTML
   }
+  addEventListenerFavs ();
 }
 
-function resultApi() {  
+function resultApi() {
   let characteresSearch = [];
-listCharacteres.innerHTML = "";
+  listCharacteres.innerHTML = '';
   fetch(`https://breakingbadapi.com/api/characters?name=${input.value}`)
     .then((response) => response.json())
     .then((data) => {
@@ -62,5 +61,18 @@ function handleSearch(ev) {
   ev.preventDefault();
   resultApi();
 }
+
+function handleClickFav(event) {
+    console.log( "click");
+  event.currentTarget.classList.toggle('selected');
+}
 // ENVENTOS
+function addEventListenerFavs() {
+  
+  const favItems = document.querySelectorAll('.js-li');
+  for (const eachFavItem of favItems) {
+    eachFavItem.addEventListener('click', handleClickFav );
+  }
+  // por cada cosa de mi lista eschucha mi click
+}
 btnSearch.addEventListener('click', handleSearch);

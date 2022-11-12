@@ -1,11 +1,8 @@
-@import 'core/variables';
 @import 'core/reset';
-@import 'components/code';
-@import 'components/links';
-@import 'layout/page';
-@import 'layout/header';
-@import 'layout/footer';
-@import 'pages/index';
+// @import 'core/variables';
+// @import 'layout/header';
+
+// @import 'layout/footer';
 
 .header {
   display: flex;
@@ -30,4 +27,10 @@
 }
 .footer {
   text-align: center;
+}
+.img {
+  width: 100px;
+}
+.list {
+  grid: 1fr 1fr 1fr;
 }

@@ -20,12 +20,9 @@ fetch('https://breakingbadapi.com/api/characters')
 let savedFavourites = JSON.parse(localStorage.getItem('favoroutecharacteres'));
 //  con esto siempre SIEMPRE te traes la info pero ahora decides que hacer con ella con in if. te dice que cuando cargues la pagina me traigas la info guardada en localstorage, pero siempre hay que decirle que si no hay informacion pues nada, pero que si hay informacion ( !==null) osea que si es diferente a null pues que me pases esa lista a mi array de favourites y que me lo pintes nada mas arrancar
 if (savedFavourites !== null) {
-    favouriteCharacteres = savedFavourites;
-    paintcharacteresfav(favouriteCharacteres);
+  favouriteCharacteres = savedFavourites;
+  paintcharacteresfav(favouriteCharacteres);
 }
-
-
-
 
 function paintcharacteres(paint) {
   for (const item of paint) {

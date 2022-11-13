@@ -10,6 +10,8 @@ const listFav = document.querySelector('.js-fav-list');
 let characteres = [];
 let favouriteCharacteres = [];
 
+// ESTO PASA AL CARGAR LA PAGINA
+
 fetch('https://breakingbadapi.com/api/characters')
   .then((response) => response.json())
   .then((dataResult) => {

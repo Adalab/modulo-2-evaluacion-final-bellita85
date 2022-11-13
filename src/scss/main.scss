@@ -3,49 +3,64 @@
 // @import 'layout/header';
 
 // @import 'layout/footer';
-
+.page {
+}
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   padding: 20px;
+  background-image: url('./../images/1366_2000.jpg');
+  background-size: cover;
+  background-position: 50%;
+  height: 400px;
 }
 .title {
-  color: orange;
+  color: rgb(248, 193, 14);
   font-size: 40px;
-  padding: 50px;
+  padding: 30px;
+  font-weight: bold;
+}
+.filter__input {
+  width: 100%;
+}
+.btn_search {
 }
 .main {
   display: flex;
   justify-content: space-between;
   gap: 50px;
-  padding: 50px;
+  background-color: #f6a700;
 }
 .fav__section {
   width: 20%;
-  background-color: aqua;
 }
 .list__section {
-  background-color: burlywood;
-  width: 100vw;
   display: inline;
+  border-left: solid black 3px;
+}
+.fav_list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px;
 }
 .footer {
   text-align: center;
 }
 .img {
-  width: 100px;
+  width: 60px;
 }
 .list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 200px;
 }
 .fav__title {
   text-align: center;
-  font-size: 30px;
-  padding: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 .article {
   display: flex;
@@ -53,5 +68,31 @@
   gap: 10px;
 }
 .selected {
-  background-color: red;
+  background-color: gray;
+  opacity: 0.6;
+}
+.js-li {
+  display: flex;
+  justify-content: center;
+}
+@media all and (min-width: 768px) {
+  .fav__title {
+    text-align: center;
+    font-size: 50px;
+    padding: 30px;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 200px;
+  }
+  .fav__section {
+    width: 20%;
+  }
+  .img {
+    width: 100px;
+  }
+  .title {
+    // color: black;
+  }
 }

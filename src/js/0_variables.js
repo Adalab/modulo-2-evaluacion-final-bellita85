@@ -48,13 +48,9 @@ function paintcharacteres(paint) {
     articleElement.appendChild(descElement);
     liElement.appendChild(articleElement);
     listCharacteres.appendChild(liElement);
-    // en este orden he creado con DOM mi lista: creo liElement, creo articleElement, creo img
-    // y le añado su src con parametro item.img y creo su alt con descripcion por si no carga la img
-    // meto la img dentro de articleElement. creo h2 y creo su txto de dentro y lo meto
-    // y a su vez meto h2 entero dentro de article . Y lo mismo con el parrafo
-    // y por ultimo meto article dentro de li y el li dentro de mi const del ul traido del HTML
+    console.log(liElement);
+    liElement.addEventListener('click', handleClickFav);
   }
-  addEventListenerFavs();
 }
 function paintcharacteresfav(paint) {
   listFav.innerHTML = '';
@@ -62,8 +58,7 @@ function paintcharacteresfav(paint) {
     const liElement = document.createElement('li');
     const articleElement = document.createElement('article');
     liElement.setAttribute('class', 'article');
-    liElement.setAttribute('class', 'js-li');
-    liElement.setAttribute('id', item.char_id); //gancho
+    liElement.setAttribute('class', 'js-li-fa');
     const imgElem = document.createElement('img');
     imgElem.setAttribute('src', item.img);
     imgElem.setAttribute('class', 'img');
@@ -76,32 +71,19 @@ function paintcharacteresfav(paint) {
     const descElement = document.createElement('p');
     const descText = document.createTextNode(item.status);
     descElement.appendChild(descText);
+    const resetElement = document.createElement('p');
+    const resetText = document.createTextNode('X');
+    resetElement.appendChild(resetText);
+    resetElement.setAttribute('class', 'reset');
+    resetElement.setAttribute('id', item.char_id);
     articleElement.appendChild(descElement);
+    articleElement.appendChild(resetElement);
     liElement.appendChild(articleElement);
     listFav.appendChild(liElement);
+    resetElement.addEventListener('click', handleClickX);
   }
 }
-// esta funcion la meto en el evento click search para que la busqueda la hagan desde la api, y vuelvo a
-// usar la funcion de pintar para crear el listado con la nueva info
-function resultApi() {
-  let characteresSearch = [];
-  listCharacteres.innerHTML = '';
-  fetch(`https://breakingbadapi.com/api/characters?name=${input.value}`)
-    .then((response) => response.json())
-    .then((data) => {
-      characteresSearch = data;
-      paintcharacteres(characteresSearch);
-    });
-}
-
-// funcion manejadora del boton buscar
-function handleSearch(ev) {
-  ev.preventDefault();
-  resultApi();
-}
-// para seleccionar y pintar fav
 function handleClickFav(event) {
-  event.currentTarget.classList.toggle('selected');
   const selectedId = characteres.find(
     (item) => item.char_id === parseInt(event.currentTarget.id)
   );
@@ -111,6 +93,7 @@ function handleClickFav(event) {
   );
   //    hazme un recorrido por todo favoritos y me traes Esto, pero no lo Pintes. luego lo uso para saber si me lo ha traido no me lo traigas mas. // seunda opcion es poner index que lo que me devuelve es solo la posicion del array en el que esta, pero que si no esta me da -1 asi me funciona tanto para pintar si es -1 como para quitar 1 en la posicion que yo diga que siempre sera indexof
   if (testerFavIndex === -1) {
+    event.currentTarget.classList.add('selected');
     favouriteCharacteres.push(selectedId);
     localStorage.setItem(
       'favoroutecharacteres',
@@ -120,6 +103,7 @@ function handleClickFav(event) {
   }
   // si testerfav ESTA en favoritos esta condicion no se ejecuta. solo se ejecuta si si terterfav es falsa, si no esta. // Y luego hemo smejorado la funcion con indexof para ponerle la concicion de si es -1 es que no esta, po lo cual lo metes. si tester es -1 es que al hacerme el barrido no esta, polo cual lo metes.
   else {
+    event.currentTarget.classList.remove('selected');
     favouriteCharacteres.splice(testerFavIndex, 1);
     // y si terster si esta me das su posicion del array para quitarlo.  aqui esta diciendo que empieza en testerindex que es una posicion del array, y el segundo parametro es cuantos me tiene que quitar, en este caso 1.
     localStorage.setItem(
@@ -132,12 +116,50 @@ function handleClickFav(event) {
   paintcharacteresfav(favouriteCharacteres);
 }
 
-// ENVENTOS
-function addEventListenerFavs() {
-  const favItems = document.querySelectorAll('.js-li');
-  for (const eachFavItem of favItems) {
-    eachFavItem.addEventListener('click', handleClickFav);
-  }
-  // por cada cosa de mi lista eschucha mi click
+// TODO LO NECESARIO PARA EL BOTON BUSCAR PERSONAJES
+function handleSearch(ev) {
+  ev.preventDefault();
+  resultApi();
 }
+function resultApi() {
+  let characteresSearch = [];
+  listCharacteres.innerHTML = '';
+  fetch(`https://breakingbadapi.com/api/characters?name=${input.value}`)
+    .then((response) => response.json())
+    .then((data) => {
+      characteresSearch = data;
+      paintcharacteres(characteresSearch);
+    });
+}
+
 btnSearch.addEventListener('click', handleSearch);
+
+///////////BONUS////
+
+function handleClickX(event) {
+  const testerFavReset = favouriteCharacteres.findIndex(
+    (item) => item.char_id === parseInt(event.currentTarget.id)
+  );
+  favouriteCharacteres.splice(testerFavReset, 1);
+
+  localStorage.setItem(
+    'favoroutecharacteres',
+    JSON.stringify(favouriteCharacteres)
+  );
+  paintcharacteresfav(favouriteCharacteres);
+}
+
+// ENVENTOS que no uso por usar dom avanzado y meterle el evento click a cada cosa
+// function addEventListenerFavsReset() {
+//   const xReset = document.querySelectorAll('.reset');
+//   console.log(xReset);
+//   for (const eachFavItem of xReset) {
+//     eachFavItem.addEventListener('click', handleClickX);
+//   }
+// }
+// function addEventListenerFavs() {
+//   const favItems = document.querySelectorAll('.js-li');
+//   for (const eachFavItem of favItems) {
+//     eachFavItem.addEventListener('click', handleClickFav);
+//   }
+//   // por cada cosa de mi lista eschucha mi click ESTO YA NO LO USO POR QUE LE HE LLAMADO DESDE DOM AVANZADO

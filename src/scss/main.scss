@@ -3,8 +3,6 @@
 // @import 'layout/header';
 
 // @import 'layout/footer';
-.page {
-}
 .header {
   display: flex;
   flex-direction: column;
@@ -25,20 +23,17 @@
 .filter__input {
   width: 100%;
 }
-.btn_search {
-}
 .main {
   display: flex;
   justify-content: space-between;
   gap: 50px;
   background-color: #f6a700;
 }
-.fav__section {
-  width: 20%;
-}
+
 .list__section {
   display: inline;
   border-left: solid black 3px;
+  width: 80%;
 }
 .fav_list {
   display: grid;
@@ -47,6 +42,12 @@
 }
 .footer {
   text-align: center;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
 }
 .img {
   width: 60px;
@@ -69,17 +70,32 @@
 }
 .selected {
   background-color: gray;
-  opacity: 0.6;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .js-li {
   display: flex;
   justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.btn-reset {
+  margin: 20px;
+  font-size: 20px;
 }
 .reset {
   background-color: black;
   color: white;
 
   text-align: center;
+  cursor: pointer;
 }
 @media all and (min-width: 768px) {
   .fav__title {
@@ -93,12 +109,13 @@
     grid-template-rows: 200px;
   }
   .fav__section {
-    width: 20%;
+    // width: 60%;
   }
   .img {
     width: 100px;
   }
   .title {
-    // color: black;
+    color: black;
+    font-size: 80px;
   }
 }

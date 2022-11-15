@@ -4,6 +4,7 @@ const listCharacteres = document.querySelector('.js-section-list');
 const btnSearch = document.querySelector('.js-btn');
 const input = document.querySelector('.js-input');
 const listFav = document.querySelector('.js-fav-list');
+const resetGlobal = document.querySelector('.js-reset');
 
 let characteres = [];
 let favouriteCharacteres = [];
@@ -17,14 +18,8 @@ fetch('https://breakingbadapi.com/api/characters')
     paintcharacteres(characteres);
   });
 let savedFavourites = JSON.parse(localStorage.getItem('favoroutecharacteres'));
-//  con esto siempre SIEMPRE te traes la info pero ahora decides que hacer con ella. Si hay algo lo igualas con fav y lo pintas. si no no hagas nada
 if (savedFavourites !== null) {
   favouriteCharacteres = savedFavourites;
   paintcharacteresfav(favouriteCharacteres);
 }
-// if (
-//   favouriteCharacteres === characteres) {
-// liElement.classList.add('selected');
-//   }
 
-// const filterFav = characteres.filter((item) => item.char_id === favouriteCharacteres.char_id)

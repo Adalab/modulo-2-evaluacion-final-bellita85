@@ -13,7 +13,7 @@ Realmente tengo 4 eventos:
 - boton serch para realizar la busqueda.
 - boton reset para resetear fav
 - hacer click en cada Li
-  -hacer click en cada p
+-hacer click en cada p
 
 Que me ha parecido mas dificil :
 Lo que claramente me ha parecido mas dificil es la ligica a aplicar los metodos funcionales Arrays, por que aun teniendo claro para que sirve cada uno y que nos devuelme me cuesta ver donde meterle el if para usarlo.

@@ -18,7 +18,11 @@ function paintcharacteres(paint) {
     articleElement.appendChild(titleElement);
     const descElement = document.createElement('p');
     const descText = document.createTextNode(item.status);
+    const categoryElement = document.createElement('p');
+    const categoryText = document.createTextNode(item.category);
+    categoryElement.appendChild(categoryText);
     descElement.appendChild(descText);
+    articleElement.appendChild(categoryElement);
     articleElement.appendChild(descElement);
     liElement.appendChild(articleElement);
     listCharacteres.appendChild(liElement);
@@ -105,6 +109,19 @@ function resultApi() {
     });
 }
 btnSearch.addEventListener('click', handleSearch);
+
+// TODO LO NECESARIO PARA EL BOTON LOG
+function resultLog() {
+  for ( const actor of characteres){
+    console.log(actor.name);
+  }
+  
+}
+function handleClickLog (ev) {
+  ev.preventDefault();
+  resultLog ();
+}
+btnLog.addEventListener('click', handleClickLog);
 
 ///////////BONUS////
 

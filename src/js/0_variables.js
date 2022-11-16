@@ -5,6 +5,8 @@ const btnSearch = document.querySelector('.js-btn');
 const input = document.querySelector('.js-input');
 const listFav = document.querySelector('.js-fav-list');
 const resetGlobal = document.querySelector('.js-reset');
+const btnLog = document.querySelector('.js-btn-log');
+
 
 let characteres = [];
 let favouriteCharacteres = [];

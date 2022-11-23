@@ -77,20 +77,19 @@ function localStorageSet() {
 }
 function handleClickFav(event) {
   event.currentTarget.classList.toggle('selected');
-  const selectedId = characteres.find(
-    (item) => item.char_id === parseInt(event.currentTarget.id)
-  );
+  let parseCurrent = parseInt(event.currentTarget.id);
+  const selectedId = characteres.find((item) => item.char_id === parseCurrent);
   const testerFavIndex = favouriteCharacteres.findIndex(
-    (item) => item.char_id === parseInt(event.currentTarget.id)
+    (item) => item.char_id === parseCurrent
   );
   if (testerFavIndex === -1) {
     favouriteCharacteres.push(selectedId);
-    localStorageSet();
   } else {
     favouriteCharacteres.splice(testerFavIndex, 1);
-    localStorageSet();
   }
+
   paintcharacteresfav(favouriteCharacteres);
+  localStorageSet();
 }
 
 // TODO LO NECESARIO PARA EL BOTON BUSCAR PERSONAJES
@@ -99,27 +98,25 @@ function handleSearch(ev) {
   resultApi();
 }
 function resultApi() {
-  let characteresSearch = [];
-  listCharacteres.innerHTML = '';
   fetch(`https://breakingbadapi.com/api/characters?name=${input.value}`)
     .then((response) => response.json())
     .then((data) => {
-      characteresSearch = data;
-      paintcharacteres(characteresSearch);
+       data;
+      paintcharacteres(data);
     });
+
 }
 btnSearch.addEventListener('click', handleSearch);
 
 // TODO LO NECESARIO PARA EL BOTON LOG
 function resultLog() {
-  for ( const actor of characteres){
+  for (const actor of characteres) {
     console.log(actor.name);
   }
-  
 }
-function handleClickLog (ev) {
+function handleClickLog(ev) {
   ev.preventDefault();
-  resultLog ();
+  resultLog();
 }
 btnLog.addEventListener('click', handleClickLog);
 
